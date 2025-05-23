@@ -1,6 +1,6 @@
 # WvLeaf
 
-Help, I can do anythis with GIT.
+Help, I can do anything with GIT.
 
 Display Management Tree Technical Specification
 
