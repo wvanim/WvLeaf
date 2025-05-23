@@ -1,7 +1,4 @@
-Peux-tu  le connvertir en MArkdown
-Voici la traduction anglaise fidèle et précise de ton texte :
 
----
 
 ### **Architectural Summary: Time/Space Hierarchical System**
 
