@@ -1,10 +1,5 @@
 # WvLeaf
 
-____My project____
-
-Display Management Tree Technical Specification
-
-
 **GitHub Summary: Display Management Tree Technical Specification**
 
 ---
