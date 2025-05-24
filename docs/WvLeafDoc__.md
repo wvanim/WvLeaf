@@ -212,11 +212,42 @@ Piece-Group (root fusionné)
 
 Les groupes ne correspondent pas souvent aux groupes traité par l'utilisateur.
 
-### Exemple : 
-   Les soldats d'une armée sont regroupé par armée, dans cet arbre. 
-   Effectivement les soldats vont suivre le groupe.
-   Mais en cas de combat, un 
+### 1 Définition:
+    L'espace-métier (que je nommerais simplement espace dorénavant) est un groupe sémantique dédié au métier.
+	Il réunit des éléments de plusieurs groupes pour gérer les interactions
+	nécessaires au métier.
+	En fait, L'espace metier regroupe les pièces par logique sémantique
+	et non pas "mécanique", comme l'arbre-WvAnim.
 
+	Chaque espace-métier prend racine dans un noeud WvAnim, 
+	puis se connecte à toutes les pièces présentes dans l'espace.
+
+### 2 Les deux familles d'interaction:
+
+- 1 **Interaction spatio-temporelle**
+	L'arbre WvAnim conserve la maîtrise de l'espace. 
+	Chaque lecture ou ecriture de ces valeurs empreinte un pipe entre
+	pièces de groupe différents, pour sécurité.
+	Des matrices de conversion filtrent les relations spaciales, 
+	avec origine le groupe racine. 
+
+- 2 **Interaction métier**
+    Ici, tout libertié d'échange.
+
+### 3 Exemples: 
+	Imaginons des soldats regroupés par armées dans cet arbre. 
+	Lors d'un combat, ils sont dans 2 groupes différents, complexité d'analyse d'interconnection.	
+	WvAnim fournit un "espace-métier" : le terren. Tout les soldat seront sur le même "terrain".
+	
+	Par exemple, dans un pantin, l'espace prend racine sur le corps, puis se connecte à tous les éléments du pantin.
+    Ainsi l'espace pourra vérifier que le doigt de la main n'entre pas dans le nez de la tete
+	
+	Dans un Tree Tiling Window (organisation classique des fenêtre) les zones forment un arbre,
+	l'espace remet touts les widgets au même plan. 
+	L'espace-éditeur offre un accès identique à tous le boutons, menus, ascenseurs... 
+	L'arbre-WvAnim est totalement invisible pour l''utilisateur.
+ 
+	
 ## Annexes
 
 ### Annexe 1
