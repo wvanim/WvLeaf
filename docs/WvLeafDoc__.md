@@ -235,13 +235,16 @@ Les groupes ne correspondent pas souvent aux groupes traité par l'utilisateur.
     Ici, tout libertié d'échange.
 
 ### 3 Exemples: 
+- 1 **Jeux**
 	Imaginons des soldats regroupés par armées dans cet arbre. 
 	Lors d'un combat, ils sont dans 2 groupes différents, complexité d'analyse d'interconnection.	
 	WvAnim fournit un "espace-métier" : le terren. Tout les soldat seront sur le même "terrain".
-	
+
+- 2 **Pantin**	
 	Par exemple, dans un pantin, l'espace prend racine sur le corps, puis se connecte à tous les éléments du pantin.
     Ainsi l'espace pourra vérifier que le doigt de la main n'entre pas dans le nez de la tete
-	
+
+- 3 **Bureautique**	
 	Dans un Tree Tiling Window (organisation classique des fenêtre) les zones forment un arbre,
 	l'espace remet touts les widgets au même plan. 
 	L'espace-éditeur offre un accès identique à tous le boutons, menus, ascenseurs... 
