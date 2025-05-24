@@ -213,12 +213,14 @@ Piece-Group (root fusionné)
 Les groupes ne correspondent pas souvent aux groupes traité par l'utilisateur.
 
 ### 1 Définition:
+- 1 **L'espace**
     L'espace-métier (que je nommerais simplement espace dorénavant) est un groupe sémantique dédié au métier.
 	Il réunit des éléments de plusieurs groupes pour gérer les interactions
 	nécessaires au métier.
 	En fait, L'espace metier regroupe les pièces par logique sémantique
 	et non pas "mécanique", comme l'arbre-WvAnim.
 
+- 2 **relation avec WvAnim**
 	Chaque espace-métier prend racine dans un noeud WvAnim, 
 	puis se connecte à toutes les pièces présentes dans l'espace.
 
