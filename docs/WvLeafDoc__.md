@@ -11,6 +11,10 @@ Affichage de contenu dynamique pour application logiciel : bureautique, jeux, na
 Composants dynamique : composition de page, pages successives, cadres, widgets (bouton, curseurs, roll-overs en cascade...) 
 Animation : présentation pédagogique, jeux, carte animé, motion graphics...
 
+**Extension théorique**
+??? TODO
+Ce projet est un concept théorique de gestion du temps en informatique interactive.
+
 **Contexte**
 WvAnim s'intège dans la chaîne *d'affichage dynamique* (cf. §annexe 1)
 WvAnim tient les rôles de montage(2) et d'organisation des ressources(3)  
@@ -22,7 +26,7 @@ WvAnim tient les rôles de montage(2) et d'organisation des ressources(3)
  5 - Traitement graphique *(carte graphique)*  
  6 - Périphériques d'affichage *(matériel de diffusion)* 
 
-****
+
 
 ## 1. Concept Central : Alternance Temporel/Spatial
 **Arborescence à double modalité** pour applications multimédia complexes   
@@ -208,51 +212,121 @@ Piece-Group (root fusionné)
 ```
 → Suppression d'un niveau hiérarchique, sans rupture d'alternance.  
 
-## 8 Interface métier : l'espace métier
+## 8 Interface métier : 
 
-Les groupes ne correspondent pas souvent aux groupes traité par l'utilisateur.
+### l'espace métier
 
-### 1 Définition:
+Les groupes WvAnim ne correspondent pas souvent aux groupes traité par l'utilisateur.
+
+#### Définition:
 - 1 **L'espace**
-    L'espace-métier (que je nommerais simplement espace dorénavant) est un groupe sémantique dédié au métier.
+    L'espace-métier (que je nommerais simplement Espace dorénavant) est un groupe sémantique dédié au métier.
 	Il réunit des éléments de plusieurs groupes pour gérer les interactions
 	nécessaires au métier.
-	En fait, L'espace metier regroupe les pièces par logique sémantique
+	En fait, L'espace-metier regroupe les pièces par logique sémantique
 	et non pas "mécanique", comme l'arbre-WvAnim.
 
 - 2 **relation avec WvAnim**
-	Chaque espace-métier prend racine dans un noeud WvAnim, 
-	puis se connecte à toutes les pièces présentes dans l'espace.
+	Chaque Espace prend racine dans un noeud WvAnim, 
+	puis se connecte à toutes les pièces présentes dans l'Espace.
 
-### 2 Les deux familles d'interaction:
+#### Les deux familles d'interaction:
 
 - 1 **Interaction spatio-temporelle**
-	L'arbre WvAnim conserve la maîtrise de l'espace. 
-	Chaque lecture ou ecriture de ces valeurs empreinte un pipe entre
+	L'arbre WvAnim conserve la maîtrise de l'Espace. 
+	Chaque lecture ou ecriture de ces valeurs emprunte un pipe entre
 	pièces de groupe différents, pour sécurité.
 	Des matrices de conversion filtrent les relations spaciales, 
-	avec origine le groupe racine. 
+	avec origine le groupe racine (produit de matrices). 
 
 - 2 **Interaction métier**
-    Ici, tout libertié d'échange.
+    Ici, tout libertié d'échange. En fait ça ne concerne pas WvAnim
 
-### 3 Exemples: 
+#### Exemples: 
 - 1 **Jeux**
 	Imaginons des soldats regroupés par armées dans cet arbre. 
 	Lors d'un combat, ils sont dans 2 groupes différents, complexité d'analyse d'interconnection.	
 	WvAnim fournit un "espace-métier" : le terren. Tout les soldat seront sur le même "terrain".
 
 - 2 **Pantin**	
-	Par exemple, dans un pantin, l'espace prend racine sur le corps, puis se connecte à tous les éléments du pantin.
-    Ainsi l'espace pourra vérifier que le doigt de la main n'entre pas dans le nez de la tete
+	Par exemple, dans un pantin, l'Espace prend racine sur le corps, puis se connecte à tous les éléments du pantin.
+    Ainsi l'Espace pourra vérifier que le doigt de la main n'entre pas dans le nez de la tete
 
 - 3 **Bureautique**	
 	Dans un Tree Tiling Window (organisation classique des fenêtre) les zones forment un arbre,
-	l'espace remet touts les widgets au même plan. 
+	l'Espace remet touts les widgets au même plan. 
 	L'espace-éditeur offre un accès identique à tous le boutons, menus, ascenseurs... 
 	L'arbre-WvAnim est totalement invisible pour l''utilisateur.
  
-	
+### Les coordonnées Espace
+
+Les convertions matricielles imposée par l'espace-métier ralentissent le traitement. Comment les éviter ?
+Objectif pour les pièces d'un espaces-métier : convertir les coordonnées locales en coordonnées globales.
+Solution: transformer les coordonnées locales en coordonnées Espace
+
+#### rôle
+
+Placer toutes les pieces de l'Espace dans le même référenciel accélère: 
+- 1 **tous les calculs spaciaux**
+- prédiction
+- collision
+- 2 **la circulation dans l'arbre-WvAnim**
+
+#### le Cadenas
+
+Le cadenas-metier (que je nommerais 'cadenas') est l'outil indispensable pour sécuriser cette harmonisation.
+Un Espace placera 2 cadenas sur les pièces/groupe intermédiaires de l'arbre-WvAnim, entre le group-racine et les pièces.
+Le premier de ces cadenas interdira toute modification spatiale.
+Le second connectera le temps sur le groupe racine de l'Espace.
+Note : les cadenas peuvent être utilisés séparément
+
+#### mécanisme
+
+1 - origin_to_space(flagEspace, flagTemps) :
+- place les cadenas sur les pièces/groupes intermédiaires
+- Convertir les coordonnées des pièces dans le référentiel du groupe racine.
+- mémorise la transfromation matricielle dans le groupe-parent de chaque pièce de l'Espace. 
+
+2 - revert_to_local() :
+- Revient aux coordonnées locales grâce à la matrice inverse.
+- Supprime les cadenas sur les pièces/groupes intermédiaires
+
+### Sprite
+
+#### Description
+1 - Aspect WvAnim : 
+Le Sprite est soit une Piece/Group, soit un Group de l'arbre,
+brique logicielle agnostique, adaptable à toute branche du WvAnim
+Note : l'intégration respecte toujours l'alternance Piece/Group.
+2 - Aspect métier : 
+- sous-arbre de WvAnim à signification autonome.
+Le Sprite peut être une Piece ou un Groupe selon le rôle que vous lui accorderez.
+mais la Pièce s'ajoute simplement dans un groupe si l'action  
+- Le Sprite offre des réglages via un panneau de configuration indépendant.(Voir éditeur WvAnim)
+- exemple : widget window, personnage de jeu, jeu complet, template de page...
+
+#### Dans l'éditeur
+
+1 - Création du panneau de configuration dans l'éditeur :
+- créer un sous-groupe du groupe-sprite.
+- Ajoutout de Piece classique dans WvAnim.
+Particularité : les actions sont des macros d'édition
+- Clic sur l'option de Group : "est un sprite"
+=> le Panneau s'affiche dans un cadre volant ou dans une nouvelle barre de l'éditeur.
+
+2 - Modification
+- Ctrl-clic dans un espace libre du paneau édite le groupe-Panneau
+- Modifiez-le selon vos besoin.	
+
+3 - Stockage externes
+- ils suffit d'exporter la Piece ou le Group
+- pour l'intégrer dans l'animation en cours, il suffit de l'importer. 
+- pour un usage collaboratif, pensons à un librairie de Sprites
+il en existe une actuellement dans Wvanim.
+
+4 - Usage
+L'utilisateur ne vois qu'un nouveau composant paramétrable  
+
 ## Annexes
 
 ### Annexe 1
