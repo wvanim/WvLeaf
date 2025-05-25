@@ -279,7 +279,7 @@ Le second connectera le temps sur le groupe racine de l'Espace.
 Note : les cadenas peuvent être utilisés séparément
 
 #### mécanisme
-
+Piloté par des fonctions.
 1 - origin_to_space(flagEspace, flagTemps) :
 - place les cadenas sur les pièces/groupes intermédiaires
 - Convertir les coordonnées des pièces dans le référentiel du groupe racine.
@@ -312,11 +312,11 @@ Particularité : les actions sont des macros d'édition
 - Clic sur l'option de Group : "est un sprite"
 => le Panneau s'affiche dans un cadre volant ou dans une nouvelle barre de l'éditeur.
 
-2 - Modification
+2 - Modification :
 - Ctrl-clic dans un espace libre du paneau édite le groupe-Panneau
 - Modifiez-le selon vos besoin.	
 
-3 - Stockage externes
+3 - Stockage externes :
 - ils suffit d'exporter la Piece ou le Group
 - pour l'intégrer dans l'animation en cours, il suffit de l'importer. 
 - pour un usage collaboratif, pensons à un librairie de Sprites
@@ -465,6 +465,9 @@ Cette optimisation généralisée **lève la rigidité structurelle initiale** s
 - La fusion `Piece`-`Face` (y compris `Group`) simplifie l'arbre tout en respectant l'alternance en sous-réseaux,  
 - L'encapsulation stricte garantit qu'aucun accès direct à la `Face` ne brise le déterminisme,  
 - Le système gagne en flexibilité pour les cas d'usage courants, sans sacrifier la scalabilité.  
+
+
+
 
 _______________________________________________________________________________________________
 _______________________________________________________________________________________________
@@ -718,7 +721,6 @@ ________________________________________________________________________________
 
 
 
-```markdown
 # Métrique de Complexité Adaptative des Pièces
 
 ## Définition Formelle
@@ -898,7 +900,8 @@ Display(F) = f(Texture(F), Matrix_{local}(F))
 ### Théorème d'Isolation Événementielle  
 *« Les événements souris sont traités par : »*  
 ```math
-Event(F) → Piece(P) → Métier  
+Event(F) → Piece(P) → Métier 
+``` 
 Sans intervention des Group parents  
 
 **Démonstration** :  
