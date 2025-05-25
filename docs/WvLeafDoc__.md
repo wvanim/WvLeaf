@@ -1,5 +1,3 @@
-TEMPORAIRE
-
 
 
 # Arbre de gestion d'affichage — Spécification technique  
