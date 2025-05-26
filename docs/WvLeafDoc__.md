@@ -5,7 +5,7 @@
 
 
 **Rôle** : 
-Affichage de contenu dynamique pour application logiciel : bureautique, jeux, navigateur
+Affichage de contenu dynamique pour application logiciel : bureautique, didacticiel, jeux, navigateur, robotique
 Composants dynamique : composition de page, pages successives, cadres, widgets (bouton, curseurs, roll-overs en cascade...) 
 Animation : présentation pédagogique, jeux, carte animé, motion graphics...
 
@@ -173,9 +173,29 @@ Une piste est une succession de **keys** (étapes clés contenant des informatio
   - Filtre les données sensibles,  
   - Traduit les événements animation → métier.  
 
+## 7 - Gestion de l'espace
+### Les Groupes responsables des transitions spaciales - sonores et vidéos
+
+**transformation** :
+Principe des calculateurs de transformation :
+Chaque Groupe définit son propre mode de calcul des transformations spatiales (ou sonores/vidéo). Cela peut inclure :
+
+des matrices 4×4 (pour transformations affines ou projectives)
+
+des quaternions (pour rotations 3D)
+
+des transformations audio (filtres, enveloppes)
+
+ou toute autre méthode adaptée à la nature du Groupe.
+
+WvAnim ne fixe aucun formalisme global mais vérifie la compatibilité entre les calculateurs lors de la composition de transformations. Cette propagation de transformation est transparente pour les Pièces : elles ne manipulent pas directement les coordonnées.
+
+**cheminement des propriété spaciales** :
+En logique formelle, le lien entre les Groupes successifs constitue une relation de transformation qui modifie l'espace (visuel, sonore ou vidéo) jusqu'à la Face terminale.
+Les propriétés bondissent de Groupe en Group, les pièces sont exclues de ces calculs. Leur rôle se limite à du stockage. 
 ---  
 
-## 7. Optimisation clé 
+## 8. Optimisation clé 
 
 ### Unicité des instances  
 - Chaque objet est unique en mémoire (même avec contenu identique)  
@@ -210,7 +230,7 @@ Piece-Group (root fusionné)
 ```
 → Suppression d'un niveau hiérarchique, sans rupture d'alternance.  
 
-## 8 Interface métier : 
+## 9 Interface métier : 
 
 ### l'espace métier
 
@@ -827,7 +847,7 @@ ________________________________________________________________________________
 
 
 
-```markdown
+```
 # Démonstration : Nature Fixe des Faces et Isolation des Face-feuilles
 
 ## 1. Preuve de Fixité des Faces pour une Pièce
@@ -1219,7 +1239,7 @@ Le vrai défi n'est pas le verrouillage dimensionnel, mais **l'interprétation d
   - Nécessiter une *couche d'adaptation métier* post-projection  
 
 **Risque concret** :  
-```python  
+
 # Si le Group3D projette un point 3D (x,y,z) → (x', y')  
 # Mais la Face-feuille attend (row, col) pour une grille 2D :  
 incompatibilité_sémantique = (x' ∉ rows) or (y' ∉ cols)  
@@ -1315,7 +1335,7 @@ def update_tree(root):
         # Exécution isolée avec horloge locale  
         with ThreadPool() as pool:  
             pool.submit(root.update)  
-
+```
 **b) Garanties Acquises** :  
 - **Exclusion mutuelle naturelle** (pas d'objets partagés en écriture)  
 - **Ordre préservé** (les lectures d'horloge sont atomiques et non bloquantes)  
