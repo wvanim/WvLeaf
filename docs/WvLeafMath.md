@@ -1,6 +1,6 @@
 Auteur Philippe Destrumel ffe392dbc3e63a20d0b0eb8f0b0c1012 *__WvPlastic_desc_teemseek.md
                           de532ddc1c9049051e70ea0c441f2871 *__WvPlastic_desc_teemseek001.md
-
+						  c240eafd4aebf69831bf5a34745692c0 *__WvPlastic_desc_teemseek004.md
 Ce travail relève de l'informatique théorique (cs.IT) et des mathématiques appliquées (math.NA), avec des applications en interfaces utilisateur.
 
 _______________________________________________________________________________________________
