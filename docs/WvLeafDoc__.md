@@ -1,3 +1,4 @@
+ 3 - Organisation des ressources *(Resource Orchestration)*  
 
 
 # Arbre de gestion d'affichage — Spécification technique  
@@ -174,23 +175,34 @@ Une piste est une succession de **keys** (étapes clés contenant des informatio
   - Traduit les événements animation → métier.  
 
 ## 7 - Gestion de l'espace
+
 ### Les Groupes responsables des transitions spaciales - sonores et vidéos
 
-**transformation** :
+#### Groupe
 Principe des calculateurs de transformation :
-Chaque Groupe définit son propre mode de calcul des transformations spatiales (ou sonores/vidéo). Cela peut inclure :
+Chaque Groupe définit son propre mode de calcul des transformations spatiales (ou sonores/vidéo). 
 
-des matrices 4×4 (pour transformations affines ou projectives)
+#### transformation :
+Cela peut inclure :
+- les matrices 4×4 (pour transformations affines ou projectives)
+- des quaternions (pour rotations 3D)
+- des transformations audio (filtres, enveloppes)
+- ou toute autre méthode adaptée à la nature du Groupe.
 
-des quaternions (pour rotations 3D)
+#### compatibilité
 
-des transformations audio (filtres, enveloppes)
+- WvAnim ne fixe aucun formalisme global mais vérifie la compatibilité entre les calculateurs lors de la composition de transformations. Cette propagation de transformation est transparente pour les Pièces : elles ne manipulent pas directement les coordonnées.
 
-ou toute autre méthode adaptée à la nature du Groupe.
+- La compatibilité ne se réduit pas à calculteurs de trasformation de même classe. 
 
-WvAnim ne fixe aucun formalisme global mais vérifie la compatibilité entre les calculateurs lors de la composition de transformations. Cette propagation de transformation est transparente pour les Pièces : elles ne manipulent pas directement les coordonnées.
+**Par exemple, la mécanique articulée, tel qu'un moteur** :
+C'est un pantin. Le calcul de mouvement balaye les pièces du groupe.
+Partant du ou des points fixes (ex : axe de rotation) pour calculer l'ensemble des positions.
+Ici nous voyons une transformation spécifique, elle fournira tout de même le résultat dans un modèle reconnu "matrice". 
+Supposons ce calcul dans un Groupe espace-2D. Il est compatible à un espace 3D car il ne s'agit que de calcul, la représentation visuelle sera 3D. 
 
-**cheminement des propriété spaciales** :
+
+#### cheminement des propriété spaciales :
 En logique formelle, le lien entre les Groupes successifs constitue une relation de transformation qui modifie l'espace (visuel, sonore ou vidéo) jusqu'à la Face terminale.
 Les propriétés bondissent de Groupe en Group, les pièces sont exclues de ces calculs. Leur rôle se limite à du stockage. 
 ---  
