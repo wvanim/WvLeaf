@@ -1,5 +1,5 @@
- 3 - Organisation des ressources *(Resource Orchestration)*  
-
+Auteur Philippe Destrumel ffe392dbc3e63a20d0b0eb8f0b0c1012 *__WvPlastic_desc_teemseek.md
+                          de532ddc1c9049051e70ea0c441f2871 *__WvPlastic_desc_teemseek001.md
 
 # Arbre de gestion d'affichage — Spécification technique  
 
